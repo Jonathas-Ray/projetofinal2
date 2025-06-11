@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "620076998484",
+    "project_id": "bancotext2",
+    "storage_bucket": "bancotext2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620076998484:android:5162d50b1536610dee72c1",
+        "android_client_info": {
+          "package_name": "com.example.icaroproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620076998484-etnrivf90kbck9dtjsgeuavep8h62rkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzCf0nVtVr0wf81cMCb8t5hbBDKsMIVWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620076998484-etnrivf90kbck9dtjsgeuavep8h62rkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620076998484:android:40869b6b6d899dc7ee72c1",
+        "android_client_info": {
+          "package_name": "com.example.tentativa5"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620076998484-etnrivf90kbck9dtjsgeuavep8h62rkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzCf0nVtVr0wf81cMCb8t5hbBDKsMIVWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620076998484-etnrivf90kbck9dtjsgeuavep8h62rkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

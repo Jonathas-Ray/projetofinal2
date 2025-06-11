@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">tentativa 5</string>
+    <string name="home">Home</string>
+    <string name="updates">Updates</string>
+    <string name="sent">Enviar</string>
+    <string name="logout">Sair</string>
+    <string name="settings">Configurações</string>
+    <string name="trash">Trash</string>
+    <string name="profile">Perfil</string>
+    <string name="drafts">Drafts</string>
+    <string name="navegation_drawer_open">Open</string>
+    <string name="navegation_drawer_close">Close</string>
+    <string name="perfil">Perfil</string>
+    <string name="historico">Historico</string>
+    <string name="adicionar">Adicionar</string>
+
+    <!--    TELA DE LOGIN E CADASTRO-->
+    <string name="aceitar">Aceitar termos</string>
+    <string name="entrar">Entrar</string>
+    <string name="continuar">Continuar</string>
+    <string name="cadastro">Não tem conta ? Cadastre-se</string>
+    <string name="concluir">Concluir</string>
+    <string name="faça">Ou</string>
+    <string name="cadastrar">Cadastre-se</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="email">Email</string>
+    <string name="confSenha">Confirme a senha</string>
+</resources>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white_smoke"
+    tools:context=".tLogin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTopContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="350dp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="65dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/imglogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedImageStyle" />
+
+        <View
+            android:id="@+id/container"
+            style="@style/container"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTopContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/email"
+            style="@style/editText"
+            android:hint="@string/email"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_email"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toTopOf="@id/container"/>
+
+        <EditText
+            android:id="@+id/senha"
+            style="@style/editText"
+            android:hint="@string/senha"
+            android:inputType="textPassword"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_eye"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/email"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Ebutton"
+            android:drawableBottom="@drawable/buttonstyler"
+            style="@style/button"
+            android:text="@string/entrar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/senha"/>
+
+        <ProgressBar
+            android:id="@+id/progessbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container" />
+
+        <TextView
+            android:id="@+id/oufaça"
+            android:layout_width="121dp"
+            android:layout_height="37dp"
+            android:gravity="center"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:text="@string/faça"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progessbar" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btnLgoogle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oufaça" />
+
+        <TextView
+            android:id="@+id/cadastresseclic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/cadastro"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLgoogle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

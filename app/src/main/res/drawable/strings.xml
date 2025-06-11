@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">icaroproject</string>
+    <string name="title">Transforme seus exames em informações valiosas para sua saúde.</string>
+    <string name="conttitle">
+        Nosso app permite que você registre fotos e PDFs de exames com praticidade,
+        segurança e organização. Acompanhe a evolução dos seus resultados, compare exames
+        antigos e tenha tudo à mão quando precisar.
+        Ideal para consultas, check-ups e para quem se preocupa com
+        o próprio bem-estar.</string>
+    <string name="fimtitle">Tudo isso em um só lugar — simples, fácil e feito para cuidar de você.</string>
+    <string name="aceitar">Aceitar termos</string>
+    <string name="entrar">Entrar</string>
+    <string name="continuar">Continuar</string>
+    <string name="cadastro">Não tem conta ? Cadastre-se</string>
+    <string name="concluir">Concluir</string>
+    <string name="faça">Ou</string>
+    <string name="cadastrar">Cadastre-se</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="email">Email</string>
+    <string name="confSenha">Confirme a senha</string>
+    <string name="venha_conhecer_nosso_app">Venha conhecer nosso app</string>
+    <string name="façalogin">Faça loguin!</string>
+    <string name="recsenha">Esqueceu a senha ? </string>
+    <string name="frasegoogle">Continue com Google</string>
+    <string name="hitorico">Historico</string>
+    <string name="perfil">Usuario</string>
+    <string name="adicionar">Adicionar</string>
+
+</resources>
