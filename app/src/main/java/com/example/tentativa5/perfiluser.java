@@ -183,10 +183,8 @@ public class perfiluser extends AppCompatActivity {
         //ao clicar aqui, abrir a funçao de digitar os valores a mão grande
         popupView.findViewById(R.id.texto).setOnClickListener(v -> {
             Intent intent = new Intent(perfiluser.this, adicionarvalores.class);
+            intent.putExtra("botao_selecionado", "texto");  // Enviando o id do botão clicado
             startActivity(intent);
-            finish();
-            Toast.makeText(this, "Clicou no 4", Toast.LENGTH_SHORT).show();
-            popupWindow.dismiss();
         });
     }
 }

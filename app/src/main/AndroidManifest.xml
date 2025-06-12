@@ -20,10 +20,10 @@
             android:name=".tCadastro"
             android:exported="false" />
         <activity
-            android:name=".perfiluser"
+            android:name=".tLogin"
             android:exported="false" />
         <activity
-            android:name=".tLogin"
+            android:name=".perfiluser"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
