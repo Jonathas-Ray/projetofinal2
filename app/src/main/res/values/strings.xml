@@ -13,6 +13,7 @@
     <string name="perfil">Perfil</string>
     <string name="historico">Historico</string>
     <string name="adicionar">Adicionar</string>
+    <string name="enviar">Enviar</string>
 
     <!--    TELA DE LOGIN E CADASTRO-->
     <string name="aceitar">Aceitar termos</string>

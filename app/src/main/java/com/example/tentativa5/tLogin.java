@@ -33,6 +33,7 @@ public class tLogin extends AppCompatActivity {
     private AppCompatButton eButton;
     private TextView cadastresse;
     private FirebaseAuth mAuth;
+
     private void animacaoBounce(View view) {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.bouce);
         view.startAnimation(animation);
@@ -46,12 +47,11 @@ public class tLogin extends AppCompatActivity {
         setContentView(R.layout.activity_tloguin);
 
         progessbar = findViewById(R.id.progessbar);
-        edt_emailLogin = findViewById(R.id.email); //pega o email
-        edt_senhaLoguin = findViewById(R.id.senha); // pega senha
-        eButton = findViewById(R.id.Ebutton); // olha o clic do botão
+        edt_emailLogin = findViewById(R.id.email);
+        edt_senhaLoguin = findViewById(R.id.senha);
+        eButton = findViewById(R.id.Ebutton);
         cadastresse = findViewById(R.id.cadastresseclic);
         mAuth = FirebaseAuth.getInstance();
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -59,51 +59,42 @@ public class tLogin extends AppCompatActivity {
             return insets;
         });
 
-        //leva com um clic na escrita pra tela de cadastro
-        cadastresse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                irparacadastro();
-            }
-        });
+        // Leva com um clique na escrita para a tela de cadastro
+        cadastresse.setOnClickListener(view -> irparacadastro());
 
+        // Exibir ou ocultar a senha com o "olhinho"
+        edt_senhaLoguin.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
 
-        // Para ver com um clique no ícone do olho
-        ((View) edt_senhaLoguin).setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int DRAWABLE_RIGHT = 2; // índice do drawableRight
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (edt_senhaLoguin.getCompoundDrawables()[DRAWABLE_RIGHT] != null &&
+                        event.getRawX() >= (edt_senhaLoguin.getRight()
+                                - edt_senhaLoguin.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
 
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (edt_senhaLoguin.getRight() - edt_senhaLoguin.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        // Alternar visibilidade
-                        if (edt_senhaLoguin.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-                            // Mostrar senha
-                            edt_senhaLoguin.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                        } else {
-                            // Ocultar senha
-                            edt_senhaLoguin.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        }
+                    int selection = edt_senhaLoguin.getSelectionEnd();
 
-                        // Coloca o cursor no fim do texto
-                        edt_senhaLoguin.setSelection(edt_senhaLoguin.getText().length());
-                        return true;
+                    if (edt_senhaLoguin.getInputType() ==
+                            (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                        edt_senhaLoguin.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    } else {
+                        edt_senhaLoguin.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     }
+
+                    edt_senhaLoguin.setSelection(selection); // manter posição do cursor
+                    return true;
                 }
-                return false;
             }
+            return false;
         });
+
 
         eButton.setOnClickListener(v -> {
-            // fazer a animação
             animacaoBounce(eButton);
-            eButton.postDelayed(() -> {
 
-                // Pega os textos digitados/
+            eButton.postDelayed(() -> {
                 String loginemail = edt_emailLogin.getText().toString().trim();
                 String loguinsenha = edt_senhaLoguin.getText().toString().trim();
-                // validações
+
                 if (!TextUtils.isEmpty(loginemail) && !TextUtils.isEmpty(loguinsenha)) {
                     if (android.util.Patterns.EMAIL_ADDRESS.matcher(loginemail).matches()) {
                         if (loguinsenha.length() >= 6) {
@@ -147,10 +138,9 @@ public class tLogin extends AppCompatActivity {
         finish();
     }
 
-    private void irparacadastro(){
+    private void irparacadastro() {
         Intent intent = new Intent(tLogin.this, tCadastro.class);
         startActivity(intent);
         finish();
     }
-
 }

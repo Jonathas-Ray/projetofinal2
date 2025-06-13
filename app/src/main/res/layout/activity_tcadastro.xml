@@ -50,7 +50,7 @@
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="@id/container"
             app:layout_constraintEnd_toEndOf="@id/container"
-            app:layout_constraintTop_toTopOf="@id/container" />
+            app:layout_constraintTop_toTopOf="@id/container"/>
 
         <EditText
             android:id="@+id/senha"
