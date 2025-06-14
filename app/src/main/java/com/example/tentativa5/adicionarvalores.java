@@ -3,6 +3,8 @@ package com.example.tentativa5;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
@@ -27,6 +30,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 
 public class adicionarvalores extends AppCompatActivity {
 
@@ -52,6 +65,25 @@ public class adicionarvalores extends AppCompatActivity {
         configurarDrawer();
         configurarBotoes();
         configurarBackButton();
+
+
+        btn_enviar.setOnClickListener(v -> {
+//            animacaoBounce(eButton);
+            btn_enviar.postDelayed(() ->{
+                Map<String, String> campos = new HashMap<>();
+                campos.put("campo1", String.valueOf(campo1));
+                campos.put("campo2", String.valueOf(campo2));
+                campos.put("campo3", String.valueOf(campo3));
+                campos.put("campo4", String.valueOf(campo4));
+                campos.put("campo5", String.valueOf(campo5));
+
+                JSONObject jsonFinal = verificarCampos(campos);
+
+                Log.d("JSON_FINAL", jsonFinal.toString());
+                enviarJSON(jsonFinal);
+
+            }, 100);
+        });
     }
 
     // Inicialização dos componentes visuais
@@ -118,6 +150,7 @@ public class adicionarvalores extends AppCompatActivity {
         });
     }
 
+
     // Configuração do comportamento do botão "voltar"
     private void configurarBackButton() {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
@@ -181,4 +214,52 @@ public class adicionarvalores extends AppCompatActivity {
             popupWindow.dismiss();
         });
     }
+
+    // Função para checar os campos se stão vazios ou não
+    public static JSONObject verificarCampos(Map<String, String> campos) {
+        JSONObject resultado = new JSONObject();
+
+        for (Map.Entry<String, String> entry : campos.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            try {
+                if (value == null || value.trim().isEmpty()) {
+                    resultado.put(key, JSONObject.NULL);  // Campo vazio ou nulo vira JSON null
+                } else {
+                    resultado.put(key, value);  // Campo preenchido
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return resultado;
+    }
+
+    // Função que envia o JSON para o Firebase
+    private void enviarJSON(@NonNull JSONObject json) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("json_enviados");
+
+        Map<String, Object> map = new HashMap<>();
+
+        try {
+            Iterator<String> keys = json.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                Object value = json.get(key);
+                map.put(key, value);
+            }
+
+            myRef.push().setValue(map)
+                    .addOnSuccessListener(aVoid -> Log.d("FIREBASE", "Dados enviados com sucesso!"))
+                    .addOnFailureListener(e -> Log.e("FIREBASE", "Erro ao enviar dados: " + e.getMessage()));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
