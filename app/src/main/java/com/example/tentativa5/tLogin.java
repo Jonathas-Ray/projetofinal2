@@ -34,11 +34,6 @@ public class tLogin extends AppCompatActivity {
     private TextView cadastresse;
     private FirebaseAuth mAuth;
 
-    private void animacaoBounce(View view) {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.bouce);
-        view.startAnimation(animation);
-    }
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +125,11 @@ public class tLogin extends AppCompatActivity {
                 }
             }, 100);
         });
+    }
+
+    private void animacaoBounce(View view) {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.bouce);
+        view.startAnimation(animation);
     }
 
     private void abrirTelaPrincipal() {

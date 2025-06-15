@@ -9,12 +9,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 //import androidx.annotation.NonNull;
@@ -27,19 +28,15 @@ import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
+//import org.json.JSONException;
+//import org.json.JSONObject;
 import java.util.HashMap;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Map;
-
 
 public class adicionarvalores extends AppCompatActivity {
 
@@ -65,27 +62,7 @@ public class adicionarvalores extends AppCompatActivity {
         configurarDrawer();
         configurarBotoes();
         configurarBackButton();
-
-
-        btn_enviar.setOnClickListener(v -> {
-            btn_enviar.postDelayed(() -> {
-                Map<String, Object> campos = new HashMap<>();
-                campos.put("campo1", campo1.getText().toString());
-                campos.put("campo2", campo2.getText().toString());
-                campos.put("campo3", campo3.getText().toString());
-                campos.put("campo4", campo4.getText().toString());
-                campos.put("campo5", campo5.getText().toString());
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("dados_enviados");
-
-                myRef.push().setValue(campos)
-                        .addOnSuccessListener(aVoid -> Log.d("FIREBASE", "Dados enviados com sucesso!"))
-                        .addOnFailureListener(e -> Log.e("FIREBASE", "Erro ao enviar dados: " + e.getMessage()));
-
-            }, 100);
-        });
-
+        enviarJSON();
     }
 
     // Inicialização dos componentes visuais
@@ -240,33 +217,57 @@ public class adicionarvalores extends AppCompatActivity {
 //    }
 
     // Função que envia o JSON para o Firebase
-    private void enviarJSON(JSONObject json) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("json_enviados");
-        Map<String, Object> map = new HashMap<>();
-        try {
-            Iterator<String> keys = json.keys();
-            while (keys.hasNext()) {
-                String key = keys.next();
-                Object value = json.get(key);
-                map.put(key, value);
-            }
-            String key = "";
+//    private void enviarJSON(JSONObject json) {
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("json_enviados");
+//        Map<String, Object> map = new HashMap<>();
+//        try {
+//            Iterator<String> keys = json.keys();
+//            while (keys.hasNext()) {
+//                String key = keys.next();
+//                Object value = json.get(key);
+//                map.put(key, value);
+//            }
+//            String key = "";
+//
+//            if(json.isNull(key)){
+//                map.put(key, null);
+//            }else{
+//                map.put(key, json.get(key));
+//            }
+//
+//            myRef.push().setValue(map)
+//                    .addOnSuccessListener(aVoid -> Log.d("FIREBASE", "Dados enviados com sucesso!"))
+//                    .addOnFailureListener(e -> Log.e("FIREBASE", "Erro ao enviar dados: " + e.getMessage()));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-            if(json.isNull(key)){
-                map.put(key, null);
-            }else{
-                map.put(key, json.get(key));
-            }
+    private void enviarJSON(){
+    btn_enviar.setOnClickListener(v -> {
+        animacaoBounce(btn_enviar);
+        btn_enviar.postDelayed(() -> {
+            Map<String, Object> campos = new HashMap<>();
+            campos.put("campo1", campo1.getText().toString());
+            campos.put("campo2", campo2.getText().toString());
+            campos.put("campo3", campo3.getText().toString());
+            campos.put("campo4", campo4.getText().toString());
+            campos.put("campo5", campo5.getText().toString());
 
-            myRef.push().setValue(map)
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("dados_enviados");
+
+            myRef.push().setValue(campos)
                     .addOnSuccessListener(aVoid -> Log.d("FIREBASE", "Dados enviados com sucesso!"))
                     .addOnFailureListener(e -> Log.e("FIREBASE", "Erro ao enviar dados: " + e.getMessage()));
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        }, 100);
+    });
+}
+    private void animacaoBounce(View view) {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.bouce);
+        view.startAnimation(animation);
     }
-
-
 }
