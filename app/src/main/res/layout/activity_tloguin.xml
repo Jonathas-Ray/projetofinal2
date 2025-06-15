@@ -76,11 +76,12 @@
             android:id="@+id/progessbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/container" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
         <TextView
             android:id="@+id/oufaça"
@@ -97,7 +98,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progessbar" />
+            app:layout_constraintTop_toBottomOf="@+id/container" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/btnLgoogle"
@@ -117,11 +118,11 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLgoogle" />
+            app:layout_constraintTop_toBottomOf="@+id/container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
