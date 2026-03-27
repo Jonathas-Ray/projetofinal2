@@ -44,4 +44,9 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="btnadicionar">
+        <item name="android:background">@drawable/edtjson</item>
+
+    </style>
+
 </resources>

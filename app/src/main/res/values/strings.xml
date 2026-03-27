@@ -14,6 +14,15 @@
     <string name="historico">Historico</string>
     <string name="adicionar">Adicionar</string>
     <string name="enviar">Enviar</string>
+    <string name="hemograma">Hemograma Automatizado</string>
+    <string name="leucograma">___________LEUCOGRAMA____________</string>
+    <string name="netrofilo">NEOTRÓFOLO: </string>
+    <string name="linfocito">LINFÓCITO: </string>
+    <string name="monocito">MONÓCITO: </string>
+    <string name="eocinofilo">EOSINÓFILO: </string>
+    <string name="basofilo">BASÓFILO: </string>
+    <string name="porcent">%</string>
+    <string name="U">/µL</string>
 
     <!--    TELA DE LOGIN E CADASTRO-->
     <string name="aceitar">Aceitar termos</string>

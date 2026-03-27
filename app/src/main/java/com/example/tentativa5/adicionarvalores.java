@@ -46,6 +46,8 @@ public class adicionarvalores extends AppCompatActivity {
     ImageView btn_historico, btn_adicionar, btn_usuario;
     AppCompatButton btn_enviar;
     EditText campo1, campo2, campo3, campo4, campo5;
+    EditText campo1_1, campo2_2, campo3_3, campo4_4, campo5_5;
+    EditText campoE1, campoE2, campoE3, campoE4, campoE5, campoE6, campoE7;
     TextView tv_snv;
     FirebaseAuth mAuth;
 
@@ -80,6 +82,18 @@ public class adicionarvalores extends AppCompatActivity {
         campo3 = findViewById(R.id.campo3);
         campo4 = findViewById(R.id.campo4);
         campo5 = findViewById(R.id.campo5);
+        campo1_1 = findViewById(R.id.campo1_1);
+        campo2_2 = findViewById(R.id.campo2_2);
+        campo3_3 = findViewById(R.id.campo3_3);
+        campo4_4 = findViewById(R.id.campo4_4);
+        campo5_5 = findViewById(R.id.campo5_5);
+        campoE1 = findViewById(R.id.campoE1);
+        campoE2 = findViewById(R.id.campoE2);
+        campoE3 = findViewById(R.id.campoE3);
+        campoE4 = findViewById(R.id.campoE4);
+        campoE5 = findViewById(R.id.campoE5);
+        campoE6 = findViewById(R.id.campoE6);
+        campoE7 = findViewById(R.id.campoE7);
     }
 
     // Configuração da Toolbar
@@ -114,9 +128,11 @@ public class adicionarvalores extends AppCompatActivity {
 
     // Configuração de todos os botões
     private void configurarBotoes() {
-        btn_historico.setOnClickListener(v ->
-                Toast.makeText(this, "Historico clicado!", Toast.LENGTH_SHORT).show()
-        );
+        btn_historico.setOnClickListener(v ->{
+            Intent intent = new Intent(this, historicoUser.class);
+            startActivity(intent);
+//          Toast.makeText(this, "Histórico clicado!", Toast.LENGTH_SHORT).show();
+        });
 
         btn_adicionar.setOnClickListener(this::popupadicionar);
 
@@ -174,16 +190,25 @@ public class adicionarvalores extends AppCompatActivity {
         }
 
         popupView.findViewById(R.id.camera).setOnClickListener(v -> {
+//            Intent intent = new Intent(historicoUser.this, camera.class);
+//            intent.putExtra("botao_selecionado", "camera");
+//            startActivity(intent);
             Toast.makeText(this, "Clicou no 1", Toast.LENGTH_SHORT).show();
             popupWindow.dismiss();
         });
 
         popupView.findViewById(R.id.galeria).setOnClickListener(v -> {
+//            Intent intent = new Intent(historicoUser.this, galeria.class);
+//            intent.putExtra("botao_selecionado", "galeria");
+//            startActivity(intent);
             Toast.makeText(this, "Clicou no 2", Toast.LENGTH_SHORT).show();
             popupWindow.dismiss();
         });
 
         popupView.findViewById(R.id.microfone).setOnClickListener(v -> {
+//            Intent intent = new Intent(historicoUser.this, microfone.class);
+//            intent.putExtra("botao_selecionado", "microfone");
+//            startActivity(intent);
             Toast.makeText(this, "Clicou no 3", Toast.LENGTH_SHORT).show();
             popupWindow.dismiss();
         });
@@ -246,26 +271,83 @@ public class adicionarvalores extends AppCompatActivity {
 //    }
 
     private void enviarJSON(){
-    btn_enviar.setOnClickListener(v -> {
-        animacaoBounce(btn_enviar);
-        btn_enviar.postDelayed(() -> {
-            Map<String, Object> campos = new HashMap<>();
-            campos.put("campo1", campo1.getText().toString());
-            campos.put("campo2", campo2.getText().toString());
-            campos.put("campo3", campo3.getText().toString());
-            campos.put("campo4", campo4.getText().toString());
-            campos.put("campo5", campo5.getText().toString());
+        btn_enviar.setOnClickListener(v -> {
+            animacaoBounce(btn_enviar);
+            btn_enviar.postDelayed(() -> {
+                boolean todosValidos = true;
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("dados_enviados");
+                EditText[] camposEditTexts = {
+                        campo1, campo1_1, campoE1,
+                        campo2, campo2_2, campoE2,
+                        campo3, campo3_3, campoE3,
+                        campo4, campo4_4, campoE4,
+                        campo5, campo5_5, campoE5,
+                                          campoE6,
+                                          campoE7
+                };
 
-            myRef.push().setValue(campos)
-                    .addOnSuccessListener(aVoid -> Log.d("FIREBASE", "Dados enviados com sucesso!"))
-                    .addOnFailureListener(e -> Log.e("FIREBASE", "Erro ao enviar dados: " + e.getMessage()));
+                 //Verificação se é so numeros
+                for (EditText campo : camposEditTexts) {
+                    String valor = campo.getText().toString().trim();
 
-        }, 100);
-    });
-}
+                    if (!todosNumeros(valor)) {
+                        campo.setError("Digite um número válido");
+                        todosValidos = false;
+                    } else {
+                        campo.setError(null); //O erro some
+                    }
+                }
+
+                if (todosValidos){
+
+                    Map<String, Object> campos = new HashMap<>();
+                    campos.put("campo1", campo1.getText().toString());
+                    campos.put("campo1_1", campo1_1.getText().toString());
+
+                    campos.put("campo2", campo2.getText().toString());
+                    campos.put("campo2_2", campo2_2.getText().toString());
+
+                    campos.put("campo3", campo3.getText().toString());
+                    campos.put("campo3_3", campo3_3.getText().toString());
+
+                    campos.put("campo4", campo4.getText().toString());
+                    campos.put("campo4_4", campo4_4.getText().toString());
+
+                    campos.put("campo5", campo5.getText().toString());
+                    campos.put("campo5_5", campo5_5.getText().toString());
+
+                    //           ERITROGRAMA
+                    campos.put("campoE1", campoE1.getText().toString());
+                    campos.put("campoE2", campoE2.getText().toString());
+                    campos.put("campoE3", campoE3.getText().toString());
+                    campos.put("campoE4", campoE4.getText().toString());
+                    campos.put("campoE5", campoE5.getText().toString());
+                    campos.put("campoE6", campoE6.getText().toString());
+                    campos.put("campoE7", campoE7.getText().toString());
+
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("dados_enviados");
+
+                    myRef.push().setValue(campos)
+                            .addOnSuccessListener(aVoid -> Log.d("FIREBASE", "Dados enviados com sucesso!"))
+                            .addOnFailureListener(e -> Log.e("FIREBASE", "Erro ao enviar dados: " + e.getMessage()));
+                }else {
+                    Toast.makeText(this, "Preencha todos os campos com números válidos.", Toast.LENGTH_SHORT).show();
+                }
+            }, 100);
+        });
+    }
+
+    private boolean todosNumeros(String str) {
+        if (str == null || str.isEmpty()) return false; //verifica se é nulo ou vazio e retorna falso
+        try {
+            Double.parseDouble(str.replace(",", "."));  // Aceita vírgula como decimal
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private void animacaoBounce(View view) {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.bouce);
         view.startAnimation(animation);
